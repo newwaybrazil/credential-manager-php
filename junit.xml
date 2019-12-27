@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Application Test Suite" tests="8" assertions="8" errors="0" failures="0" skipped="0" time="0.200573">
+    <testsuite name="CredentialManager\CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" tests="8" assertions="8" errors="0" failures="0" skipped="0" time="0.200573">
+      <testcase name="testCreateCredential" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="17" assertions="1" time="0.014043"/>
+      <testcase name="testGetCredential" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="29" assertions="1" time="0.024339"/>
+      <testcase name="testGetCredentialException" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="52" assertions="1" time="0.026503"/>
+      <testcase name="testGetCredentialAndGenerateToken" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="76" assertions="1" time="0.036485"/>
+      <testcase name="testSetCredential" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="103" assertions="1" time="0.024414"/>
+      <testcase name="testSetCredentialException" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="127" assertions="1" time="0.025032"/>
+      <testcase name="testDelCredential" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="151" assertions="1" time="0.024996"/>
+      <testcase name="testDelCredentialException" class="CredentialManager\CredentialTest" classname="CredentialManager.CredentialTest" file="/var/www/html/tests/unit/CredentialTest.php" line="174" assertions="1" time="0.024761"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
