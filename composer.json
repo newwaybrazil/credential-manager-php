@@ -1,5 +1,5 @@
 {
-    "name": "espositovitor/credential-manager-php",
+    "name": "newwaybrazil/credential-manager-php",
     "description": "PHP library for search credential in redis with Predis",
     "version": "1.0.0",
     "type": "library",
