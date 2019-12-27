@@ -19,7 +19,7 @@ The recommended way to install is through Composer.
 composer require espositovitor/credential-manager-php
 ```
 
-### Sample
+### Samples
 
 it's a good idea to look in the sample folder to understand how it works.
 Run all files with PHP to see many examples.
