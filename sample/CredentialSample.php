@@ -6,8 +6,13 @@ use CredentialManager\Credential;
 
 $credential = new Credential();
 
-$credential->setCredential('serviceName', 'CredentialSample');
-$getCredential = $credential->getCredential('serviceName');
+$credential->setCredential(
+	'originName',
+	'serviceName',
+	'CredentialSample'
+);
+
+$getCredential = $credential->getCredential('originName', 'serviceName');
 
 print_r($getCredential);
 echo PHP_EOL;

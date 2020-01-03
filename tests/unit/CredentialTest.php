@@ -28,18 +28,19 @@ class CredentialTest extends TestCase
      */
     public function testGetCredential()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('get')
-            ->with("token-{$service}")
+            ->with("token-{$origin}-{$service}")
             ->once()
             ->andReturn('token')
             ->getMock();
 
         $credential = new Credential();
 
-        $getCredential = $credential->getCredential($service);
+        $getCredential = $credential->getCredential($origin, $service);
 
         $this->assertEquals($getCredential, 'token');
     }
@@ -51,18 +52,19 @@ class CredentialTest extends TestCase
      */
     public function testGetCredentialException()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('get')
-            ->with("token-{$service}")
+            ->with("token-{$origin}-{$service}")
             ->once()
             ->andThrow(new Exception('err', 500))
             ->getMock();
 
         $credential = new Credential();
 
-        $getCredential = $credential->getCredential($service);
+        $getCredential = $credential->getCredential($origin, $service);
 
         $this->assertEquals($getCredential, null);
     }
@@ -75,22 +77,23 @@ class CredentialTest extends TestCase
      */
     public function testGetCredentialAndGenerateToken()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('get')
-            ->with("token-{$service}")
+            ->with("token-{$origin}-{$service}")
             ->once()
             ->andReturn('')
             ->getMock();
 
         $credential = Mockery::mock(Credential::class, [])->makePartial();
         $credential->shouldReceive('setCredential')
-            ->with($service, 'generic_token')
+            ->with($origin, $service, 'generic_token')
             ->once()
             ->andReturn(true);
 
-        $getCredential = $credential->getCredential($service);
+        $getCredential = $credential->getCredential($origin, $service);
 
         $this->assertEquals($getCredential, 'generic_token');
     }
@@ -102,19 +105,20 @@ class CredentialTest extends TestCase
      */
     public function testSetCredential()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
         $value = 'token';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('set')
-            ->with("token-{$service}", $value)
+            ->with("token-{$origin}-{$service}", $value)
             ->once()
             ->andReturn(true)
             ->getMock();
 
         $credential = new Credential();
 
-        $setCredential = $credential->setCredential($service, $value);
+        $setCredential = $credential->setCredential($origin, $service, $value);
 
         $this->assertEquals($setCredential, true);
     }
@@ -126,19 +130,20 @@ class CredentialTest extends TestCase
      */
     public function testSetCredentialException()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
         $value = 'token';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('set')
-            ->with("token-{$service}", $value)
+            ->with("token-{$origin}-{$service}", $value)
             ->once()
             ->andThrow(new Exception('err', 500))
             ->getMock();
 
         $credential = new Credential();
 
-        $setCredential = $credential->setCredential($service, $value);
+        $setCredential = $credential->setCredential($origin, $service, $value);
 
         $this->assertEquals($setCredential, false);
     }
@@ -150,18 +155,19 @@ class CredentialTest extends TestCase
      */
     public function testDelCredential()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('del')
-            ->with("token-{$service}")
+            ->with("token-{$origin}-{$service}")
             ->once()
             ->andReturn(true)
             ->getMock();
 
         $credential = new Credential();
 
-        $delCredential = $credential->delCredential($service);
+        $delCredential = $credential->delCredential($origin, $service);
 
         $this->assertEquals($delCredential, true);
     }
@@ -173,18 +179,19 @@ class CredentialTest extends TestCase
      */
     public function testDelCredentialException()
     {
+        $origin = 'originTest';
         $service = 'serviceTest';
 
         $redisMock = Mockery::mock('overload:' . Redis::class)
             ->shouldReceive('del')
-            ->with("token-{$service}")
+            ->with("token-{$origin}-{$service}")
             ->once()
             ->andThrow(new Exception('err', 500))
             ->getMock();
 
         $credential = new Credential();
 
-        $delCredential = $credential->delCredential($service);
+        $delCredential = $credential->delCredential($origin, $service);
 
         $this->assertEquals($delCredential, false);
     }

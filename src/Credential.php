@@ -30,14 +30,19 @@ class Credential
      * @return string
      */
     public function getCredential(
+        string $origin,
         string $service
     ): ?string {
         try {
-            $credential = $this->redis->get("token-{$service}");
+            $credential = $this->redis->get("token-{$origin}-{$service}");
             
             if (empty($credential) && method_exists($this, 'getTokenJwt')) {
                 $credential = $this->getTokenJwt($service);
-                $this->setCredential($service, $credential);
+                $this->setCredential(
+                    $origin,
+                    $service,
+                    $credential
+                );
             }
 
             return $credential;
@@ -54,11 +59,12 @@ class Credential
      * @return bool
      */
     public function setCredential(
+        string $origin,
         string $service,
         string $credential
     ): bool {
         try {
-            $this->redis->set("token-{$service}", $credential);
+            $this->redis->set("token-{$origin}-{$service}", $credential);
             return true;
         } catch (Exception $e) {
             return false;
@@ -73,10 +79,11 @@ class Credential
      * @return bool
      */
     public function delCredential(
+        string $origin,
         string $service
     ): bool {
         try {
-            $this->redis->del("token-{$service}");
+            $this->redis->del("token-{$origin}-{$service}");
             return true;
         } catch (Exception $e) {
             return false;
