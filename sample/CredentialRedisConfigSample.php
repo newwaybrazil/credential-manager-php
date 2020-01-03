@@ -11,8 +11,13 @@ $redisConfig = [
 
 $credential = new Credential($redisConfig);
 
-$credential->setCredential('serviceName', 'CredentialRedisConfigSample');
-$getCredential = $credential->getCredential('serviceName');
+$credential->setCredential(
+	'originName',
+	'serviceName',
+	'CredentialRedisConfigSample'
+);
+
+$getCredential = $credential->getCredential('originName', 'serviceName');
 
 print_r($getCredential);
 echo PHP_EOL;

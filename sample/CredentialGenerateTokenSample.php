@@ -15,8 +15,8 @@ class CredentialGenerateTokenSample extends Credential
     {
         parent::__construct();
 
-        $this->delCredential('serviceName');
-        $getCredential = $this->getCredential('serviceName');
+        $this->delCredential('originName', 'serviceName');
+        $getCredential = $this->getCredential('originName', 'serviceName');
 
         print_r($getCredential);
         echo PHP_EOL;

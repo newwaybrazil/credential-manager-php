@@ -1,7 +1,7 @@
 {
     "name": "newwaybrazil/credential-manager-php",
     "description": "PHP library for search credential in redis with Predis",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "type": "library",
     "require": {
         "php": "^7.1",
@@ -37,7 +37,7 @@
             "find ./src -name '*.php' -print0 | xargs -0 -n1 -P8 php -l -d display_errors=0"
         ],
         "cs": "vendor/bin/phpcs",
-        "test": "vendor/bin/phpunit",
-        "test-cover": "vendor/bin/phpunit --coverage-html coverage --coverage-clover coverage/coverage.xml --log-junit junit.xml"
+        "test": "phpdbg -qrr vendor/bin/phpunit",
+        "test-cover": "phpdbg -qrr vendor/bin/phpunit --coverage-html coverage --coverage-clover coverage/coverage.xml --log-junit coverage/junit.xml"
     }
 }
