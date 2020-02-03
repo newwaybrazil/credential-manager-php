@@ -12,9 +12,9 @@ $redisConfig = [
 $credential = new Credential($redisConfig);
 
 $credential->setCredential(
-	'originName',
-	'serviceName',
-	'CredentialRedisConfigSample'
+    'originName',
+    'serviceName',
+    'CredentialRedisConfigSample'
 );
 
 $getCredential = $credential->getCredential('originName', 'serviceName');
