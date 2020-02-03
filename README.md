@@ -27,7 +27,6 @@ Run all files with PHP to see many examples.
 ```sh
 php sample/CredentialSample.php
 php sample/CredentialRedisConfigSample.php
-php sample/CredentialGenerateTokenSample.php
 ```
 
 ### Development

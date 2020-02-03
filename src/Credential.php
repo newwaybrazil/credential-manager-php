@@ -34,18 +34,7 @@ class Credential
         string $service
     ): ?string {
         try {
-            $credential = $this->redis->get("token-{$origin}-{$service}");
-            
-            if (empty($credential) && method_exists($this, 'getTokenJwt')) {
-                $credential = $this->getTokenJwt($service);
-                $this->setCredential(
-                    $origin,
-                    $service,
-                    $credential
-                );
-            }
-
-            return $credential;
+            return $this->redis->get("token-{$origin}-{$service}");
         } catch (Exception $e) {
             return null;
         }
@@ -105,19 +94,5 @@ class Credential
 
         $this->redisConfig = array_merge($defaultConfig, $this->redisConfig);
         return new Redis($this->redisConfig);
-    }
-
-
-    /**
-     * @codeCoverageIgnore
-     * method getTokenJwt
-     * using this method for custom
-     * @param string $service
-     * @return string
-     */
-    public function getTokenJwt(
-        string $service
-    ): string {
-        return 'generic_token';
     }
 }

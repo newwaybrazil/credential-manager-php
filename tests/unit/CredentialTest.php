@@ -72,35 +72,6 @@ class CredentialTest extends TestCase
     /**
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @covers \CredentialManager\Credential::getCredential
-     * @covers \CredentialManager\Credential::getTokenJwt
-     */
-    public function testGetCredentialAndGenerateToken()
-    {
-        $origin = 'originTest';
-        $service = 'serviceTest';
-
-        $redisMock = Mockery::mock('overload:' . Redis::class)
-            ->shouldReceive('get')
-            ->with("token-{$origin}-{$service}")
-            ->once()
-            ->andReturn('')
-            ->getMock();
-
-        $credential = Mockery::mock(Credential::class, [])->makePartial();
-        $credential->shouldReceive('setCredential')
-            ->with($origin, $service, 'generic_token')
-            ->once()
-            ->andReturn(true);
-
-        $getCredential = $credential->getCredential($origin, $service);
-
-        $this->assertEquals($getCredential, 'generic_token');
-    }
-
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      * @covers \CredentialManager\Credential::setCredential
      */
     public function testSetCredential()

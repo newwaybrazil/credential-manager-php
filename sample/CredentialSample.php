@@ -7,9 +7,9 @@ use CredentialManager\Credential;
 $credential = new Credential();
 
 $credential->setCredential(
-	'originName',
-	'serviceName',
-	'CredentialSample'
+    'originName',
+    'serviceName',
+    'CredentialSample'
 );
 
 $getCredential = $credential->getCredential('originName', 'serviceName');
